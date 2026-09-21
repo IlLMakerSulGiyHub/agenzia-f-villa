@@ -5,14 +5,17 @@
  */
 
 const APP_CONFIG = {
-  agencyName: "Agenzia F. Villa",
-  phoneDisplay: "+39 02 123 4567",
-  phoneCall: "+39021234567",
-  whatsappDisplay: "+39 340 123 4567",
-  whatsappNumber: "393401234567", // Numero WhatsApp reale (senza spazi né simboli, con prefisso 39)
-  email: "info@agenziafvilla.it",
-  address: "Via Roma, 120 • 20121 Milano (MI)",
-  hours: "Lun - Ven: 08:30 - 13:00 / 14:30 - 18:30 | Sabato su appuntamento",
+  agencyName: "Agenzia Villa",
+  ownerName: "Francesca Villa",
+  phoneDisplay: "371 115 1204",
+  phoneCall: "+393711151204",
+  phoneSecondaryDisplay: "327 622 9504",
+  phoneSecondaryCall: "+393276229504",
+  whatsappDisplay: "327 622 9504",
+  whatsappNumber: "393276229504",
+  email: "studiofrancescavilla@gmail.com",
+  address: "Via XXV Luglio, 86 • 84013 Cava de' Tirreni (SA)",
+  hours: "Lun - Ven: 09:00 - 13:00 / 16:00 - 20:00 | Sabato su appuntamento",
   pIva: "01234567890"
 };
 
@@ -45,16 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
 function syncConfigSettings() {
   // Aggiorna link WhatsApp
   document.querySelectorAll('a[data-wa-dynamic]').forEach(link => {
-    const defaultText = link.getAttribute('data-wa-text') || 'Buongiorno Agenzia F. Villa, desidero richiedere informazioni sui vostri servizi.';
+    const defaultText = link.getAttribute('data-wa-text') || `Buongiorno ${APP_CONFIG.agencyName}, desidero richiedere informazioni sui vostri servizi.`;
     link.href = `https://wa.me/${APP_CONFIG.whatsappNumber}?text=${encodeURIComponent(defaultText)}`;
   });
 
-  // Aggiorna pulsante telefonico
+  // Aggiorna pulsante telefonico principale
   document.querySelectorAll('a[data-phone-dynamic]').forEach(link => {
     link.href = `tel:${APP_CONFIG.phoneCall}`;
     if (link.hasAttribute('data-replace-text')) {
       link.textContent = APP_CONFIG.phoneDisplay;
     }
+  });
+
+  // Aggiorna email
+  document.querySelectorAll('a[data-email-dynamic]').forEach(link => {
+    link.href = `mailto:${APP_CONFIG.email}`;
+    link.textContent = APP_CONFIG.email;
   });
 }
 
@@ -297,9 +306,10 @@ function initInteractiveEstimator() {
             <label class="block text-xs font-semibold text-slate-700 mb-1">Tipo Pratica Auto</label>
             <select id="calcSubAuto" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs bg-white">
               <option value="Passaggio di Proprietà STA">Passaggio di Proprietà (STA Immediato)</option>
+              <option value="Immatricolazione / Estero">Immatricolazione / Nazionalizzazione</option>
+              <option value="Revisione o Collaudo Speciale">Revisione o Collaudo (GPL/Metano/Gancio)</option>
               <option value="Rinnovo Patente con Medico">Rinnovo Patente con Medico in Sede</option>
-              <option value="Immatricolazione / Estero">Immatricolazione / Nazionalizzazione Estera</option>
-              <option value="Visura PRA / Duplicato Carta">Visura PRA o Duplicato Documento</option>
+              <option value="Visura PRA / Perdita Possesso">Visura PRA o Duplicato Documento</option>
             </select>
           </div>
           <div>
@@ -332,10 +342,11 @@ function initInteractiveEstimator() {
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Pratica Nautica Richiesta</label>
             <select id="calcSubNautica" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs bg-white">
-              <option value="Passaggio Proprietà Natante / Imbarcazione">Passaggio di Proprietà Natante o Imbarcazione</option>
-              <option value="Rilascio o Rinnovo Patente Nautica">Rilascio o Rinnovo Patente Nautica</option>
-              <option value="Iscrizione STED / Dismissione Bandiera">Iscrizione STED / Dismissione Bandiera</option>
-              <option value="Visita RINA / Certificato Sicurezza">Visita RINA / Certificato di Sicurezza</option>
+              <option value="Passaggio Proprietà Natante / Imbarcazione">Passaggio di Proprietà Barca o Natante</option>
+              <option value="Convalida o Rinnovo Patente Nautica">Convalida o Rinnovo Patente Nautica con Medico</option>
+              <option value="Rilascio Nuova Patente Nautica">Rilascio Patente Nautica (Entro/Oltre 12M)</option>
+              <option value="Iscrizione STED / Licenza Navigazione">Iscrizione STED o Licenza Navigazione</option>
+              <option value="Visita RINA / Certificato Sicurezza">Visita RINA / Varie Certificazioni</option>
             </select>
           </div>
           <div>
@@ -350,15 +361,16 @@ function initInteractiveEstimator() {
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Ramo Assicurativo</label>
             <select id="calcSubAssicura" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs bg-white">
-              <option value="RCA Auto / Moto / Autocarro">RCA Auto, Moto o Autocarro</option>
+              <option value="RCA Auto / Moto / Autocarro">Preventivo RC Auto, Moto o Autocarro</option>
+              <option value="Veicoli d'Epoca & Storici">Veicoli d'Epoca & Storici (Convenzioni ASI/FMI)</option>
               <option value="Polizza Corpi Nautica & RC Natanti">Polizza Corpi & Macchine Nautica</option>
               <option value="Polizza Casa & Famiglia">Polizza Casa & Tutela Famiglia</option>
-              <option value="Tutela Legale & Infortuni">Tutela Legale e Infortuni</option>
+              <option value="Tutela Legale & Fideiussioni">Tutela Legale e Fideiussioni</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Classe di Merito o Valore Bene</label>
-            <input type="text" id="calcAssicuraInfo" placeholder="Es. Classe 1, oppure Valore stimato..." class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs bg-white">
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Dettagli Veicolo o Bene da Assicurare</label>
+            <input type="text" id="calcAssicuraInfo" placeholder="Es. Targa, anno immatricolazione o valore..." class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs bg-white">
           </div>
         </div>
       `;

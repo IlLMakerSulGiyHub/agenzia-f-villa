@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biglietto da Visita con QR Code | Agenzia F. Villa</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- QRious Canvas QR Code Library (Rock solid, reliable) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* 3D Flip Container & Card Ratio (85mm x 55mm) */
+    .perspective-container {
+      perspective: 1200px;
+      -webkit-perspective: 1200px;
+    }
+
+    .business-card {
+      width: 510px;
+      height: 330px;
+      position: relative;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0 auto;
+    }
+
+    .business-card.flipped {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      border-radius: 16px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      transform: rotateY(0deg);
+      -webkit-transform: rotateY(0deg);
+      z-index: 2;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+      z-index: 1;
+    }
+
+    /* Custom Luxury Gradients */
+    .bg-navy-card {
+      background: radial-gradient(circle at 85% 15%, #15345d 0%, #071528 70%);
+    }
+
+    .bg-back-card {
+      background: radial-gradient(circle at 15% 85%, #0b223f 0%, #050e1b 75%);
+    }
+
+    /* Print Specific Styles for Standard 85mm x 55mm Cards */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-sheet {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 15mm;
+        padding: 10mm;
+      }
+      .business-card-print {
+        width: 85mm !important;
+        height: 55mm !important;
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px dashed #bbb !important;
+        margin: 0 auto;
+      }
+      .business-card-print * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- ================= TOP HEADER (NO PRINT) ================= -->
+  <header class="no-print bg-slate-950/90 border-b border-slate-800 py-4 px-6 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Torna al Sito">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        </a>
+        <div>
+          <h1 class="text-base font-bold text-white font-serif">Agenzia F. Villa • Biglietto da Visita</h1>
+          <p class="text-xs text-slate-400">Generatore digitale con QR Code interattivo (vCard, Web, WhatsApp)</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="flipCardBtn" type="button" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold transition flex items-center gap-2 border border-slate-700 shadow-sm">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Gira Biglietto (Fronte/Retro)</span>
+        </button>
+        <button onclick="window.print()" class="px-5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold transition shadow-md flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span>Stampa / Salva PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN WORKSPACE ================= -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- LEFT: 3D CARD PREVIEW -->
+    <div class="lg:col-span-7 flex flex-col items-center justify-center p-6 sm:p-10 rounded-2xl bg-slate-950/60 border border-slate-800">
+      
+      <div class="text-center mb-6 no-print">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Anteprima Interattiva 3D</span>
+        <p class="text-xs text-slate-400 mt-1">Clicca sul biglietto o usa il pulsante in alto per ruotarlo</p>
+      </div>
+
+      <!-- 3D FLIP CONTAINER -->
+      <div class="perspective-container cursor-pointer select-none" id="cardContainer" title="Clicca per ruotare">
+        <div class="business-card shadow-2xl rounded-2xl" id="businessCard">
+          
+          <!-- ================= FRONTE CARD ================= -->
+          <div class="card-face card-front bg-navy-card text-white p-7 flex flex-col justify-between border border-amber-500/30 shadow-2xl">
+            
+            <!-- Geometric Background Accents -->
+            <div class="absolute top-0 right-0 w-44 h-44 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-36 h-36 bg-cyan-500/10 rounded-full blur-xl pointer-events-none"></div>
+
+            <!-- Top Row: Logo & Brand -->
+            <div class="flex items-start justify-between relative z-10">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-slate-900 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-md">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl font-extrabold tracking-tight font-serif text-white uppercase" id="previewAgencyName">AGENZIA F. VILLA</h2>
+                  <span class="text-[9px] uppercase tracking-widest text-amber-400 font-bold block">Studio Multiservizi & Consulenze</span>
+                </div>
+              </div>
+
+              <!-- Mini STA Badge -->
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-[9px] text-emerald-300 font-semibold tracking-wide">
+                STA Abilitato
+              </span>
+            </div>
+
+            <!-- Middle Row: Personal / Contact Name -->
+            <div class="my-auto relative z-10">
+              <h3 class="text-2xl font-extrabold text-white tracking-tight font-serif" id="previewHolderName">Francesco Villa</h3>
+              <p class="text-xs text-amber-300 font-semibold tracking-wide mt-0.5" id="previewHolderRole">Consulente Pratiche Auto, Nautica & Sinistri</p>
+            </div>
+
+            <!-- Bottom Row: 4 Services Pill Ribbon -->
+            <div class="pt-3 border-t border-slate-700/80 flex items-center justify-between text-[9px] font-semibold text-slate-300 tracking-wider relative z-10">
+              <span class="flex items-center gap-1 text-amber-300">🚗 AUTO (STA)</span>
+              <span>•</span>
+              <span class="flex items-center gap-1 text-rose-300">⚖️ INFORTUNISTICA</span>
+              <span>•</span>
+              <span class="flex items-center gap-1 text-cyan-300">⚓ NAUTICA</span>
+              <span>•</span>
+              <span class="flex items-center gap-1 text-emerald-300">🛡️ POLIZZE</span>
+            </div>
+
+          </div>
+
+          <!-- ================= RETRO CARD (WITH QR CODE) ================= -->
+          <div class="card-face card-back bg-back-card text-white p-7 flex justify-between items-center border border-slate-800 shadow-2xl">
+            
+            <!-- Left Info Column -->
+            <div class="flex-1 pr-4 space-y-2.5 relative z-10">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block" id="previewSubTitle">Contatti & Recapiti</span>
+                <h4 class="text-sm font-extrabold text-white font-serif tracking-tight">Studio Agenzia F. Villa</h4>
+              </div>
+
+              <div class="space-y-1.5 text-xs text-slate-300">
+                <div class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+                  <span id="previewPhone" class="font-medium">+39 02 123 4567</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  <span id="previewWhatsapp" class="font-medium">+39 340 123 4567 (WA)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                  <span id="previewEmail" class="font-medium">info@agenziafvilla.it</span>
+                </div>
+                <div class="flex items-start gap-2 pt-0.5">
+                  <svg class="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  <span id="previewAddress" class="text-[11px] leading-tight text-slate-400">Via Roma, 120 • 20121 Milano (MI)</span>
+                </div>
+              </div>
+
+              <div class="pt-2 text-[10px] text-slate-500 border-t border-slate-800">
+                P.IVA: <span id="previewPiva">01234567890</span> • Sportello STA
+              </div>
+            </div>
+
+            <!-- Right Column: High-Res QR Code Card -->
+            <div class="w-36 flex flex-col items-center justify-center p-3 rounded-xl bg-white text-slate-950 shadow-xl border border-slate-200">
+              <canvas id="qrCanvas" class="w-28 h-28 rounded"></canvas>
+              <span class="text-[9px] font-bold text-slate-700 mt-2 text-center uppercase tracking-wider block" id="qrLabel">
+                Inquadra per vCard
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick Hint -->
+      <p class="text-xs text-slate-400 mt-6 no-print flex items-center gap-1.5">
+        <span>💡</span>
+        <span>Inquadrando il QR Code con qualsiasi smartphone viene salvato istantaneamente il contatto in rubrica!</span>
+      </p>
+    </div>
+
+    <!-- RIGHT: CONTROLS & PERSONALIZATION (NO PRINT) -->
+    <div class="lg:col-span-5 space-y-6 no-print">
+      
+      <div class="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-5">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <span>Personalizza Biglietto</span>
+        </h3>
+
+        <!-- QR Code Destination Selector -->
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1.5">Funzione del QR Code:</label>
+          <select id="qrTypeSelect" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-semibold text-white focus:ring-2 focus:ring-amber-500">
+            <option value="vcard" selected>📇 vCard Digitale (Salva contatto in rubrica telefono)</option>
+            <option value="whatsapp">💬 Chat WhatsApp Diretta</option>
+            <option value="website">🌐 Link al Sito Web Ufficiale</option>
+          </select>
+        </div>
+
+        <!-- Inputs Form -->
+        <div class="space-y-3 text-xs">
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Nome Referente / Titolare</label>
+            <input type="text" id="inputHolderName" value="Francesco Villa" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white focus:ring-1 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Ruolo / Qualifica</label>
+            <input type="text" id="inputHolderRole" value="Consulente Pratiche Auto, Nautica & Sinistri" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white focus:ring-1 focus:ring-amber-500">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block font-semibold text-slate-400 mb-1">Telefono Fisso</label>
+              <input type="text" id="inputPhone" value="+39 02 123 4567" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-400 mb-1">Cellulare / WhatsApp</label>
+              <input type="text" id="inputWhatsapp" value="+39 340 123 4567" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Email Aziendale</label>
+            <input type="email" id="inputEmail" value="info@agenziafvilla.it" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Indirizzo Sede</label>
+            <input type="text" id="inputAddress" value="Via Roma, 120 • 20121 Milano (MI)" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Partita IVA / C.F.</label>
+            <input type="text" id="inputPiva" value="01234567890" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+          </div>
+        </div>
+
+        <div class="pt-2 flex flex-col gap-2">
+          <button id="updateCardBtn" type="button" class="w-full py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition shadow">
+            Aggiorna Anteprima & QR Code
+          </button>
+        </div>
+      </div>
+
+      <!-- Print Instructions Box -->
+      <div class="p-5 rounded-2xl bg-slate-950/50 border border-slate-800 text-xs text-slate-400 space-y-2">
+        <h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Istruzioni per la Stampa</span>
+        </h4>
+        <p>• Cliccando su <strong>"Stampa / Salva PDF"</strong> puoi stampare direttamente o salvare il file in PDF ad alta risoluzione.</p>
+        <p>• Nelle opzioni di stampa del browser, attiva la casella <strong>"Grafica di sfondo"</strong> per stampare i colori navy e oro.</p>
+        <p>• Formato standard compatibile con qualsiasi tipografia o stampante (85x55 mm).</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= PRINT-ONLY LAYOUT (SHEET CON FRONTE E RETRO) ================= -->
+  <div class="print-sheet hidden">
+    
+    <!-- Fronte da Stampa -->
+    <div class="business-card-print bg-navy-card text-white p-4 flex flex-col justify-between rounded-lg relative">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded bg-slate-900 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xs font-bold">
+            V
+          </div>
+          <div>
+            <div class="text-sm font-bold font-serif uppercase tracking-tight">AGENZIA F. VILLA</div>
+            <div class="text-[7px] text-amber-400 uppercase tracking-widest">Studio Multiservizi & Consulenze</div>
+          </div>
+        </div>
+        <span class="text-[7px] px-1.5 py-0.5 rounded bg-emerald-950 border border-emerald-600 text-emerald-300 font-bold">STA</span>
+      </div>
+
+      <div class="my-auto">
+        <div class="text-base font-bold font-serif print-holder-name">Francesco Villa</div>
+        <div class="text-[8px] text-amber-300 font-medium print-holder-role">Consulente Pratiche Auto, Nautica & Sinistri</div>
+      </div>
+
+      <div class="text-[7px] border-t border-slate-700/80 pt-1 flex justify-between text-slate-300">
+        <span>🚗 AUTO (STA)</span>
+        <span>⚖️ INFORTUNISTICA</span>
+        <span>⚓ NAUTICA</span>
+        <span>🛡️ ASSICURAZIONI</span>
+      </div>
+    </div>
+
+    <!-- Retro da Stampa -->
+    <div class="business-card-print bg-back-card text-white p-4 flex justify-between items-center rounded-lg border border-slate-800 relative">
+      <div class="pr-2 space-y-1 text-[8px] text-slate-300">
+        <div class="font-bold text-amber-400 uppercase text-[8px]">Agenzia F. Villa</div>
+        <div>Tel: <span class="print-phone">+39 02 123 4567</span></div>
+        <div>WhatsApp: <span class="print-whatsapp">+39 340 123 4567</span></div>
+        <div>Email: <span class="print-email">info@agenziafvilla.it</span></div>
+        <div class="text-[7px] text-slate-400">Sede: <span class="print-address">Via Roma, 120 • Milano</span></div>
+        <div class="text-[6px] text-slate-500">P.IVA: <span class="print-piva">01234567890</span></div>
+      </div>
+
+      <div class="w-20 h-20 p-1 bg-white rounded flex items-center justify-center shrink-0">
+        <canvas id="printQrCanvas" class="w-18 h-18"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const card = document.getElementById('businessCard');
+      const flipBtn = document.getElementById('flipCardBtn');
+      const cardContainer = document.getElementById('cardContainer');
+
+      // 1. Flip Animation
+      function toggleFlip() {
+        card.classList.toggle('flipped');
+      }
+
+      if (flipBtn) flipBtn.addEventListener('click', toggleFlip);
+      if (cardContainer) cardContainer.addEventListener('click', toggleFlip);
+
+      // 2. QR Code Generator with QRious Canvas
+      let qrInstance = null;
+      let printQrInstance = null;
+
+      function generateQRCode() {
+        const qrType = document.getElementById('qrTypeSelect').value;
+        const name = document.getElementById('inputHolderName').value.trim();
+        const phone = document.getElementById('inputPhone').value.trim();
+        const whatsapp = document.getElementById('inputWhatsapp').value.trim();
+        const email = document.getElementById('inputEmail').value.trim();
+        const address = document.getElementById('inputAddress').value.trim();
+        const piva = document.getElementById('inputPiva').value.trim();
+        const role = document.getElementById('inputHolderRole').value.trim();
+
+        let qrData = '';
+        let labelText = 'Inquadra per vCard';
+
+        if (qrType === 'vcard') {
+          labelText = 'Inquadra per vCard';
+          // Standard clean vCard 3.0 compatible with iOS & Android
+          qrData = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nORG:Agenzia F. Villa\nTITLE:${role}\nTEL:${phone}\nTEL;TYPE=CELL:${whatsapp}\nEMAIL:${email}\nADR:;;${address};;;;\nURL:https://agenziafvilla.it\nEND:VCARD`;
+        } else if (qrType === 'whatsapp') {
+          labelText = 'Chat WhatsApp';
+          const cleanWa = whatsapp.replace(/[^0-9]/g, '');
+          qrData = `https://wa.me/${cleanWa}?text=Buongiorno%20Agenzia%20F.%20Villa,%20desidero%20informazioni%20sui%20vostri%20servizi.`;
+        } else if (qrType === 'website') {
+          labelText = 'Visita il Sito Web';
+          qrData = 'https://agenziafvilla.it';
+        }
+
+        document.getElementById('qrLabel').textContent = labelText;
+
+        // Render to Preview Canvas
+        const qrCanvas = document.getElementById('qrCanvas');
+        qrInstance = new QRious({
+          element: qrCanvas,
+          value: qrData,
+          size: 112,
+          level: 'M',
+          foreground: '#071528',
+          background: '#ffffff'
+        });
+
+        // Render to Print Canvas
+        const printQrCanvas = document.getElementById('printQrCanvas');
+        printQrInstance = new QRious({
+          element: printQrCanvas,
+          value: qrData,
+          size: 72,
+          level: 'M',
+          foreground: '#071528',
+          background: '#ffffff'
+        });
+      }
+
+      // 3. Live Sync Form Inputs to Preview
+      function updateCardDetails() {
+        const name = document.getElementById('inputHolderName').value;
+        const role = document.getElementById('inputHolderRole').value;
+        const phone = document.getElementById('inputPhone').value;
+        const whatsapp = document.getElementById('inputWhatsapp').value;
+        const email = document.getElementById('inputEmail').value;
+        const address = document.getElementById('inputAddress').value;
+        const piva = document.getElementById('inputPiva').value;
+
+        // Preview Face
+        document.getElementById('previewHolderName').textContent = name;
+        document.getElementById('previewHolderRole').textContent = role;
+        document.getElementById('previewPhone').textContent = phone;
+        document.getElementById('previewWhatsapp').textContent = `${whatsapp} (WA)`;
+        document.getElementById('previewEmail').textContent = email;
+        document.getElementById('previewAddress').textContent = address;
+        document.getElementById('previewPiva').textContent = piva;
+
+        // Print Sheet
+        document.querySelectorAll('.print-holder-name').forEach(el => el.textContent = name);
+        document.querySelectorAll('.print-holder-role').forEach(el => el.textContent = role);
+        document.querySelectorAll('.print-phone').forEach(el => el.textContent = phone);
+        document.querySelectorAll('.print-whatsapp').forEach(el => el.textContent = whatsapp);
+        document.querySelectorAll('.print-email').forEach(el => el.textContent = email);
+        document.querySelectorAll('.print-address').forEach(el => el.textContent = address);
+        document.querySelectorAll('.print-piva').forEach(el => el.textContent = piva);
+
+        generateQRCode();
+      }
+
+      document.getElementById('updateCardBtn').addEventListener('click', updateCardDetails);
+      document.getElementById('qrTypeSelect').addEventListener('change', generateQRCode);
+
+      // Auto update on input typing
+      const inputs = [
+        'inputHolderName', 'inputHolderRole', 'inputPhone',
+        'inputWhatsapp', 'inputEmail', 'inputAddress', 'inputPiva'
+      ];
+      inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updateCardDetails);
+      });
+
+      // Initial generation
+      updateCardDetails();
+    });
+  </script>
+</body>
+</html>

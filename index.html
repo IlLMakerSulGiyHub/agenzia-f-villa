@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Custom Design System Styles -->
-  <link rel="stylesheet" href="css/styles.css?v=20260921-watermark">
+  <link rel="stylesheet" href="css/styles.css?v=20260921-brightcta">
   
   <script>
     tailwind.config = {
@@ -25,10 +25,11 @@
               950: '#173c6d',
             },
             gold: {
-              400: '#f5c042',
-              500: '#c59b27',
-              600: '#b0871d',
-              700: '#8c6810',
+              300: '#fde047',
+              400: '#facc15',
+              500: '#fbbf24',
+              600: '#f59e0b',
+              700: '#d97706',
             },
             nautical: {
               500: '#0284c7',
@@ -161,9 +162,9 @@
 
           <!-- Primary CTA Buttons -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-3">
-            <button class="open-consultation-modal px-7 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-base transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2" data-service="Consulenza Automobilistica">
-              <span>Richiedi Preventivo Gratuito</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <button class="open-consultation-modal btn-bright-gold px-8 py-3.5 rounded-xl font-extrabold text-base flex items-center justify-center gap-2.5 group cursor-pointer" data-service="Consulenza Automobilistica">
+              <span class="tracking-wide">Richiedi Preventivo Gratuito</span>
+              <svg class="w-5 h-5 text-navy-950 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
             <a href="#" data-wa-dynamic data-wa-text="Buongiorno Agenzia Villa, desidero informazioni generali sui vostri servizi." target="_blank" class="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-base transition border border-white/20 backdrop-blur-sm flex items-center justify-center gap-2">
               <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.35.49 1.199.534 1.286.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.302c-.087.086-.178.181-.077.354.101.174.449.741.963 1.2 1.026.913 1.892 1.196 2.16 1.325.268.13.426.108.585-.072.159-.181.679-.794.86-1.069.18-.275.361-.231.606-.144.246.086 1.56.736 1.827.87.268.134.447.202.513.317.065.116.065.665-.079 1.07z"/></svg>
@@ -980,8 +981,8 @@
           </div>
           
           <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
-            <a href="https://maps.google.com/?q=Via+XXV+Luglio+86+84013+Cava+de+Tirreni+SA" target="_blank" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 text-xs font-bold transition shadow flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            <a href="https://maps.google.com/?q=Via+XXV+Luglio+86+84013+Cava+de+Tirreni+SA" target="_blank" class="w-full sm:w-auto px-4 py-2.5 rounded-xl btn-bright-gold text-xs font-bold transition flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-navy-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               <span>Avvia Navigatore (Google Maps)</span>
             </a>
             <a href="https://waze.com/ul?q=Via+XXV+Luglio+86+Cava+de+Tirreni" target="_blank" class="hidden sm:inline-flex px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition border border-white/20 items-center gap-1.5">

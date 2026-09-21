@@ -31,11 +31,11 @@ body {
 
 /* Gradients */
 .bg-navy-gradient {
-  background: linear-gradient(135deg, #071528 0%, #0d2547 50%, #0b1f3a 100%);
+  background: linear-gradient(135deg, #1a3e6f 0%, #255798 50%, #1e487f 100%);
 }
 
 .bg-hero-glow {
-  background: radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.22) 0%, rgba(197, 155, 39, 0.12) 35%, transparent 70%);
+  background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.35) 0%, rgba(245, 192, 66, 0.22) 35%, transparent 70%);
 }
 
 .bg-card-gradient {

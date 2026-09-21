@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Custom Design System Styles -->
-  <link rel="stylesheet" href="css/styles.css?v=20260921-light2">
+  <link rel="stylesheet" href="css/styles.css?v=20260921-light3">
   
   <script>
     tailwind.config = {
@@ -18,11 +18,11 @@
         extend: {
           colors: {
             navy: {
-              700: '#25599c',
-              800: '#1c4578',
-              850: '#173c68',
-              900: '#133257',
-              950: '#0e2440',
+              700: '#3b86e8',
+              800: '#2c72cb',
+              850: '#2561ad',
+              900: '#1d4f8f',
+              950: '#173c6d',
             },
             gold: {
               400: '#f5c042',
@@ -43,7 +43,7 @@
 <body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
 
   <!-- ================= TOP BAR ================= -->
-  <div class="bg-navy-950 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800">
+  <div class="bg-navy-950 text-slate-200 text-xs py-2.5 px-4 border-b border-white/10 shadow-sm">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
       <div class="flex items-center flex-wrap gap-4 justify-center sm:justify-start">
         <span class="flex items-center gap-1.5">
@@ -1022,14 +1022,14 @@
   </section>
 
   <!-- ================= FOOTER ================= -->
-  <footer class="bg-navy-950 text-slate-400 text-xs pt-16 pb-12 border-t border-slate-800">
+  <footer class="bg-navy-950 text-slate-200 text-xs pt-16 pb-12 border-t border-white/10 shadow-inner">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
         
         <!-- Brand Col -->
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-gold-500">
+            <div class="w-10 h-10 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-gold-400 shadow-sm">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
             <div>
@@ -1037,36 +1037,34 @@
               <span class="text-[10px] font-semibold text-gold-400 uppercase tracking-wider block">Studio Francesca Villa</span>
             </div>
           </div>
-          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+          <p class="text-slate-200 text-xs leading-relaxed max-w-sm">
             Consulenza automobilistica e nautica, trasferimenti di proprietà STA, collaudi, revisioni, assicurazioni, polizze speciali veicoli d'epoca e infortunistica stradale con risarcimento danni a zero anticipi.
           </p>
-          <div class="space-y-1 text-[11px] text-slate-400 pt-1">
-            <div>📍 Sede: <strong class="text-slate-200">Via XXV Luglio, 86 • 84013 Cava de' Tirreni (SA)</strong></div>
+          <div class="space-y-1 text-[11px] text-slate-300 pt-1">
+            <div>📍 Sede: <strong class="text-white">Via XXV Luglio, 86 • 84013 Cava de' Tirreni (SA)</strong></div>
             <div>📞 Telefoni: <a href="tel:+393711151204" class="text-gold-400 hover:underline">371 115 1204</a> / <a href="tel:+393276229504" class="text-gold-400 hover:underline">327 622 9504</a></div>
-            <div>✉️ Email: <a href="mailto:studiofrancescavilla@gmail.com" class="text-slate-300 hover:underline">studiofrancescavilla@gmail.com</a></div>
           </div>
         </div>
 
         <!-- Links Auto -->
         <div>
-          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Consulenza Auto</h4>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Pratiche Auto & Moto</h4>
           <ul class="space-y-2">
             <li><a href="#servizi" class="hover:text-white transition">Trasferimento Proprietà STA</a></li>
             <li><a href="#servizi" class="hover:text-white transition">Immatricolazioni & Nazionalizzazioni</a></li>
-            <li><a href="#servizi" class="hover:text-white transition">Revisioni & Collaudi Speciali</a></li>
-            <li><a href="#servizi" class="hover:text-white transition">Rinnovo Patente con Medico</a></li>
-            <li><a href="#servizi" class="hover:text-white transition">Visure PRA & Bolli Auto</a></li>
+            <li><a href="#servizi" class="hover:text-white transition">Revisioni & Collaudi Mezzi</a></li>
+            <li><a href="#servizi" class="hover:text-white transition">Rinnovo Patente & Duplicati</a></li>
+            <li><a href="#servizi" class="hover:text-white transition">Radiazioni per Esportazione</a></li>
           </ul>
         </div>
 
-        <!-- Links Infortunistica & Mare -->
+        <!-- Links Nautica & Sinistri -->
         <div>
-          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Sinistri & Nautica</h4>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Nautica & Sinistri</h4>
           <ul class="space-y-2">
-            <li><a href="#infortunistica" class="hover:text-white transition">Infortunistica a Zero Anticipi</a></li>
-            <li><a href="#infortunistica" class="hover:text-white transition">Danno Biologico & Cure Senza Spese</a></li>
-            <li><a href="#nautica" class="hover:text-white transition">Patenti Nautiche (Corsi & Rilascio)</a></li>
-            <li><a href="#nautica" class="hover:text-white transition">Convalide Patenti Mare</a></li>
+            <li><a href="#infortunistica" class="hover:text-white transition text-gold-400 font-semibold">Risarcimento Danni Sinistri (Zero Spese)</a></li>
+            <li><a href="#nautica" class="hover:text-white transition">Patente Nautica (Entro ed Oltre)</a></li>
+            <li><a href="#nautica" class="hover:text-white transition">Convalida & Rinnovo Patenti Mare</a></li>
             <li><a href="#nautica" class="hover:text-white transition">Passaggi Barche & Iscrizioni STED</a></li>
           </ul>
         </div>
@@ -1085,7 +1083,7 @@
 
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-300">
         <div>
           &copy; 2026 Agenzia Villa - Studio Francesca Villa. Sede a Cava de' Tirreni (SA). Tutti i diritti riservati.
         </div>
@@ -1093,9 +1091,9 @@
           <a href="biglietto-da-visita.html" target="_blank" class="text-gold-400 hover:text-gold-300 font-semibold flex items-center gap-1">
             <span>📇 Biglietto da Visita & QR</span>
           </a>
-          <a href="#" class="hover:text-slate-300">Privacy Policy</a>
-          <a href="#" class="hover:text-slate-300">Cookie Policy</a>
-          <a href="#" class="hover:text-slate-300">Note Legali</a>
+          <a href="#" class="hover:text-white">Privacy Policy</a>
+          <a href="#" class="hover:text-white">Cookie Policy</a>
+          <a href="#" class="hover:text-white">Note Legali</a>
         </div>
       </div>
     </div>

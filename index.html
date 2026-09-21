@@ -843,9 +843,15 @@
               <div>
                 <strong class="block text-navy-900 font-bold">Indirizzo Sede:</strong>
                 <span class="text-slate-600">Via XXV Luglio, 86 • 84013 Cava de' Tirreni (SA)</span>
-                <a href="https://maps.google.com/?q=Via+XXV+Luglio+86+84013+Cava+de+Tirreni+SA" target="_blank" class="block text-xs text-nautical-600 hover:underline mt-1 font-semibold">
-                  ↗ Apri Indicazioni Stradali su Google Maps
-                </a>
+                <div class="flex flex-wrap items-center gap-3 mt-1.5 text-xs">
+                  <a href="#mappaSede" class="text-nautical-600 hover:underline font-semibold flex items-center gap-1">
+                    <span>📍 Guarda Mappa Interattiva</span>
+                  </a>
+                  <span class="text-slate-300">•</span>
+                  <a href="https://maps.google.com/?q=Via+XXV+Luglio+86+84013+Cava+de+Tirreni+SA" target="_blank" class="text-slate-600 hover:text-navy-900 hover:underline font-medium">
+                    ↗ Apri su App Google Maps
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -954,6 +960,61 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- ================= MAPPA INTERATTIVA GOOGLE MAPS ================= -->
+      <div id="mappaSede" class="mt-12 rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-white scroll-mt-24">
+        <!-- Barra Intestazione con Navigatore -->
+        <div class="p-5 bg-navy-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-gold-400 shrink-0 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gold-400 font-bold block">Posizione Sede</span>
+              <h3 class="text-base font-bold text-white font-serif tracking-tight">Studio Francesca Villa • Agenzia Villa</h3>
+              <p class="text-xs text-slate-300">Via XXV Luglio, 86 • 84013 Cava de' Tirreni (SA)</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+            <a href="https://maps.google.com/?q=Via+XXV+Luglio+86+84013+Cava+de+Tirreni+SA" target="_blank" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 text-xs font-bold transition shadow flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <span>Avvia Navigatore (Google Maps)</span>
+            </a>
+            <a href="https://waze.com/ul?q=Via+XXV+Luglio+86+Cava+de+Tirreni" target="_blank" class="hidden sm:inline-flex px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition border border-white/20 items-center gap-1.5">
+              <span>Waze</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Frame Mappa Interattiva -->
+        <div class="relative w-full h-80 sm:h-[420px] bg-slate-100">
+          <iframe 
+            title="Mappa Interattiva Google Maps - Agenzia Villa, Via XXV Luglio 86, Cava de' Tirreni"
+            src="https://maps.google.com/maps?q=Via%20XXV%20Luglio,%2086,%2084013%20Cava%20de'%20Tirreni%20SA&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+            class="w-full h-full border-0"
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Striscia Informazioni Logistiche -->
+        <div class="p-4 bg-slate-50 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</span>
+            <span class="font-medium">Posizione centrale e comoda a Cava de' Tirreni</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</span>
+            <span class="font-medium">Parcheggi pubblici nelle immediate adiacenze</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</span>
+            <span class="font-medium">Ufficio al piano terra per accesso comodo</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>

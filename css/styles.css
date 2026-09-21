@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
 
 :root {
-  --primary-navy: #0b1f3a;
-  --primary-navy-dark: #071528;
-  --primary-navy-light: #163259;
+  --primary-navy: #153866;
+  --primary-navy-dark: #10294c;
+  --primary-navy-light: #204b82;
   --accent-gold: #c59b27;
   --accent-gold-light: #e5b945;
   --nautical-cyan: #0284c7;
@@ -31,11 +31,11 @@ body {
 
 /* Gradients */
 .bg-navy-gradient {
-  background: linear-gradient(135deg, #1a3e6f 0%, #255798 50%, #1e487f 100%);
+  background: linear-gradient(135deg, #1e477a 0%, #295ea0 50%, #204d84 100%);
 }
 
 .bg-hero-glow {
-  background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.35) 0%, rgba(245, 192, 66, 0.22) 35%, transparent 70%);
+  background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.4) 0%, rgba(245, 192, 66, 0.25) 35%, transparent 70%);
 }
 
 .bg-card-gradient {
@@ -49,7 +49,7 @@ body {
 }
 
 .navy-gradient-text {
-  background: linear-gradient(135deg, #071528 0%, #1e3a8a 100%);
+  background: linear-gradient(135deg, #123055 0%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -111,10 +111,10 @@ body {
 }
 
 .service-tab.active {
-  background: #071528 !important;
+  background: #133257 !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(7, 21, 40, 0.28);
-  border-color: #071528 !important;
+  box-shadow: 0 4px 14px rgba(19, 50, 87, 0.28);
+  border-color: #133257 !important;
 }
 
 /* Notification Toast */

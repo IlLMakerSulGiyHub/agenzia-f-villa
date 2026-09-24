@@ -91,13 +91,47 @@
     /* Main layout */
     main {
       flex: 1;
-      max-width: 900px;
+      max-width: 980px;
       width: 100%;
       margin: 36px auto;
       padding: 0 20px;
       display: flex;
       flex-direction: column;
       gap: 24px;
+    }
+
+    /* Grid 2 colonne per le 3 card servizi */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .card-auto {
+      grid-column: 1;
+      grid-row: 1 / 3; /* occupa entrambe le righe a sinistra */
+    }
+
+    .card-insurance {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .card-nautical {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    @media (max-width: 620px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .card-auto { grid-column: 1; grid-row: auto; }
+      .card-insurance { grid-column: 1; grid-row: auto; }
+      .card-nautical { grid-column: 1; grid-row: auto; }
     }
 
     /* Service Card */
@@ -383,65 +417,70 @@
   <!-- Main -->
   <main>
 
-    <!-- CARD 1 - Pratiche Auto -->
-    <div class="card card-auto">
-      <div class="card-header">
-        <div class="icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l3 5v5a2 2 0 0 1-2 2h-1"/>
-            <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
-          </svg>
-        </div>
-        <h2>Pratiche Auto</h2>
-      </div>
-      <div class="card-body">
-        <ul class="service-list">
-          <li><span class="dot"></span>Trasferimenti di Propriet&agrave;</li>
-          <li><span class="dot"></span>Immatricolazioni</li>
-          <li><span class="dot"></span>Revisioni</li>
-          <li><span class="dot"></span>Collaudi</li>
-        </ul>
-      </div>
-    </div>
+    <!-- GRIGLIA SERVIZI: Pratiche Auto sinistra | Assicurazioni + Patenti destra -->
+    <div class="cards-grid">
 
-    <!-- CARD 2 - Assicurazioni -->
-    <div class="card card-insurance">
-      <div class="card-header">
-        <div class="icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
+      <!-- CARD 1 - Pratiche Auto (colonna sinistra, intera altezza) -->
+      <div class="card card-auto">
+        <div class="card-header">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l3 5v5a2 2 0 0 1-2 2h-1"/>
+              <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+            </svg>
+          </div>
+          <h2>Pratiche Auto</h2>
         </div>
-        <h2>Assicurazioni</h2>
+        <div class="card-body">
+          <ul class="service-list">
+            <li><span class="dot"></span>Trasferimenti di Propriet&agrave;</li>
+            <li><span class="dot"></span>Immatricolazioni</li>
+            <li><span class="dot"></span>Revisioni</li>
+            <li><span class="dot"></span>Collaudi</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <ul class="service-list">
-          <li><span class="dot"></span>Veicoli d&rsquo;Epoca</li>
-          <li><span class="dot"></span>Preventivi RC Auto</li>
-          <li><span class="dot"></span>Infortunistica Stradale</li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- CARD 3 - Patenti & Certificazioni -->
-    <div class="card card-nautical">
-      <div class="card-header">
-        <div class="icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="5" r="3"/>
-            <line x1="12" y1="22" x2="12" y2="8"/>
-            <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
-          </svg>
+      <!-- CARD 2 - Assicurazioni (colonna destra, in alto) -->
+      <div class="card card-insurance">
+        <div class="card-header">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h2>Assicurazioni</h2>
         </div>
-        <h2>Patenti &amp; Certificazioni</h2>
+        <div class="card-body">
+          <ul class="service-list">
+            <li><span class="dot"></span>Veicoli d&rsquo;Epoca</li>
+            <li><span class="dot"></span>Preventivi RC Auto</li>
+            <li><span class="dot"></span>Infortunistica Stradale</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <ul class="service-list">
-          <li><span class="dot"></span>Patenti Nautiche</li>
-          <li><span class="dot"></span>Convalide Patenti</li>
-          <li><span class="dot"></span>Varie Certificazioni</li>
-        </ul>
+
+      <!-- CARD 3 - Patenti & Certificazioni (colonna destra, in basso) -->
+      <div class="card card-nautical">
+        <div class="card-header">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="3"/>
+              <line x1="12" y1="22" x2="12" y2="8"/>
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </svg>
+          </div>
+          <h2>Patenti &amp; Certificazioni</h2>
+        </div>
+        <div class="card-body">
+          <ul class="service-list">
+            <li><span class="dot"></span>Patenti Nautiche</li>
+            <li><span class="dot"></span>Convalide Patenti</li>
+            <li><span class="dot"></span>Varie Certificazioni</li>
+          </ul>
+        </div>
       </div>
+
     </div>
 
     <!-- CTA bar -->

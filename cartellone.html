@@ -6,352 +6,479 @@
   <title>Agenzia Villa &ndash; Cava de&rsquo; Tirreni</title>
   <meta name="description" content="Agenzia Villa &ndash; Studio Francesca Villa. Pratiche auto, assicurazioni, patenti nautiche. Via XXV Luglio 86, Cava de&rsquo; Tirreni." />
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    /* Reset & base */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #c0392b;
+      --red-lt: #e74c3c;
+      --blue:   #1a4480;
+      --blue-lt:#2561ad;
+      --teal:   #1a6e8e;
+      --gold:   #e8a020;
+      --light:  #f8f8f6;
+      --border: #d0d4dc;
+      --text:   #1c1c2e;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      background: #e8eaf0;
+      background: var(--light);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 28px 16px 40px;
     }
 
-    /* ── Cartellone wrapper ── */
-    .cartellone {
+    /* Header / Logo */
+    header {
       background: #fff;
-      border: 2px solid #c8ccd8;
-      border-radius: 6px;
-      width: 100%;
-      max-width: 760px;
-      overflow: hidden;
-    }
-
-    /* ── Logo header ── */
-    .logo-area {
+      border-bottom: 3px solid var(--red);
+      padding: 18px 24px 12px;
       text-align: center;
-      padding: 22px 24px 16px;
-      border-bottom: 1.5px solid #dde0e8;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo-cursive {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.6rem, 8vw, 4.2rem);
-      color: #c0392b;
-      line-height: 1.05;
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      color: var(--red);
+      line-height: 1.1;
+      letter-spacing: .02em;
     }
 
     .logo-sub {
-      font-size: .72rem;
-      letter-spacing: .2em;
-      color: #1a4480;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    /* ── Griglia servizi ── */
-    .servizi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-
-    /* ---- Colonna sinistra: Pratiche Auto ---- */
-    .panel-auto {
-      grid-column: 1;
-      grid-row: 1 / 3;           /* occupa entrambe le righe */
-      padding: 24px 22px 28px;
-      border-right: 1.5px solid #dde0e8;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .panel-auto .panel-icon {
-      width: 52px;
-      height: 52px;
-      margin-bottom: 12px;
-      opacity: .85;
-    }
-
-    .panel-auto ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .panel-auto ul li {
-      font-size: .97rem;
-      font-weight: 700;
-      color: #c0392b;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      line-height: 1.3;
-    }
-
-    /* ---- Colonna destra in alto: Assicurazioni ---- */
-    .panel-insurance {
-      grid-column: 2;
-      grid-row: 1;
-      background: #fce8e6;
-      padding: 20px 20px 22px;
-      border-bottom: 1.5px solid #e8b8b4;
-    }
-
-    .panel-insurance .panel-title {
-      font-size: .82rem;
-      font-weight: 800;
-      color: #c0392b;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .panel-insurance ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .panel-insurance ul li {
-      font-size: .9rem;
-      font-weight: 600;
-      color: #1a4480;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      line-height: 1.3;
-    }
-
-    /* ---- Colonna destra in basso: Patenti ---- */
-    .panel-nautical {
-      grid-column: 2;
-      grid-row: 2;
-      background: #dff0f8;
-      padding: 20px 20px 22px;
-    }
-
-    .panel-nautical .panel-title {
-      font-size: .82rem;
-      font-weight: 800;
-      color: #1a4480;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .panel-nautical ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .panel-nautical ul li {
-      font-size: .9rem;
-      font-weight: 600;
-      color: #1a4480;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      line-height: 1.3;
-    }
-
-    /* ── Divider orizzontale tra auto e patenti (lato sinistro) ── */
-    /* La sinistra va dritta, la destra si divide in 2 — gestito dalla grid */
-
-    /* ── Footer contatti ── */
-    .footer-contacts {
-      background: #1a4480;
-      color: #fff;
-      padding: 14px 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      font-family: 'Open Sans', sans-serif;
       font-size: .78rem;
-    }
-
-    .footer-contacts .fc-left {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .footer-contacts .fc-left span {
-      opacity: .9;
-    }
-
-    .footer-contacts .fc-right {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      text-align: right;
-    }
-
-    .footer-contacts a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .footer-contacts a:hover { text-decoration: underline; }
-
-    /* ── CTA WhatsApp bar ── */
-    .cta-bar {
-      background: #f4f6fb;
-      border-top: 1.5px solid #dde0e8;
-      padding: 16px 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .cta-bar p {
-      font-size: .88rem;
-      color: #1a4480;
+      letter-spacing: .15em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-top: 2px;
       font-weight: 600;
     }
 
-    .cta-bar p span {
-      display: block;
-      font-size: .78rem;
-      font-weight: 400;
-      color: #555;
-    }
-
-    .btn-wa {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #25d366;
-      color: #fff;
-      font-weight: 700;
-      font-size: .88rem;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background .18s, transform .18s;
-    }
-    .btn-wa:hover { background: #1ebe5d; transform: translateY(-1px); }
-    .btn-wa svg { width: 18px; height: 18px; fill: #fff; }
-
-    /* ── WhatsApp FAB ── */
+    /* WhatsApp floating bubble */
     .wa-fab {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 54px;
-      height: 54px;
+      bottom: 22px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
       background: #25d366;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(37,211,102,.5);
+      box-shadow: 0 4px 18px rgba(37,211,102,.5);
       z-index: 999;
+      transition: transform .2s, box-shadow .2s;
       text-decoration: none;
-      transition: transform .2s;
     }
-    .wa-fab:hover { transform: scale(1.1); }
-    .wa-fab svg { width: 28px; height: 28px; fill: #fff; }
+    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,.65); }
+    .wa-fab svg { width: 30px; height: 30px; fill: #fff; }
 
-    /* ── Responsive ── */
-    @media (max-width: 540px) {
-      body { padding: 0; }
-      .cartellone { border-radius: 0; border-left: 0; border-right: 0; }
+    /* Main layout */
+    main {
+      flex: 1;
+      max-width: 980px;
+      width: 100%;
+      margin: 36px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
 
-      .servizi-grid {
+    /* Grid 2 colonne per le 3 card servizi */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .card-auto {
+      grid-column: 1;
+      grid-row: 1 / 3; /* occupa entrambe le righe a sinistra */
+    }
+
+    .card-insurance {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .card-nautical {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    @media (max-width: 620px) {
+      .cards-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
       }
-      .panel-auto    { grid-column: 1; grid-row: 1; border-right: none; border-bottom: 1.5px solid #dde0e8; }
-      .panel-insurance { grid-column: 1; grid-row: 2; }
-      .panel-nautical  { grid-column: 1; grid-row: 3; }
+      .card-auto { grid-column: 1; grid-row: auto; }
+      .card-insurance { grid-column: 1; grid-row: auto; }
+      .card-nautical { grid-column: 1; grid-row: auto; }
+    }
 
-      .footer-contacts { text-align: center; justify-content: center; }
-      .footer-contacts .fc-right { text-align: center; }
+    /* Service Card */
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+      overflow: hidden;
+      transition: transform .22s, box-shadow .22s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 44px rgba(0,0,0,.14), 0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .card-header {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .card-header .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 4px 24px 22px;
+    }
+
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      border-radius: 8px;
+      transition: background .18s;
+    }
+    .service-list li:hover { background: rgba(0,0,0,.035); }
+
+    .service-list li .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Card colour variants */
+
+    /* Pratiche Auto (RED) */
+    .card-auto .card-header { background: var(--red); }
+    .card-auto .card-header h2 { color: #fff; }
+    .card-auto .card-header .icon { background: rgba(255,255,255,.2); }
+    .card-auto .service-list li { color: var(--red); }
+    .card-auto .service-list li .dot { background: var(--red); }
+
+    /* Assicurazioni (BLUE) */
+    .card-insurance .card-header { background: var(--blue); }
+    .card-insurance .card-header h2 { color: #fff; }
+    .card-insurance .card-header .icon { background: rgba(255,255,255,.2); }
+    .card-insurance .service-list li { color: var(--blue); }
+    .card-insurance .service-list li .dot { background: var(--blue); }
+
+    /* Patenti & Certificazioni (TEAL) */
+    .card-nautical .card-header { background: var(--teal); }
+    .card-nautical .card-header h2 { color: #fff; }
+    .card-nautical .card-header .icon { background: rgba(255,255,255,.2); }
+    .card-nautical .service-list li { color: var(--teal); }
+    .card-nautical .service-list li .dot { background: var(--teal); }
+
+    /* CTA bar */
+    .cta-bar {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-lt) 100%);
+      border-radius: 14px;
+      padding: 28px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: 0 8px 32px rgba(26,68,128,.25);
+    }
+
+    .cta-bar p {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      flex: 1 1 200px;
+    }
+
+    .cta-bar p span {
+      display: block;
+      font-size: .85rem;
+      font-weight: 400;
+      opacity: .85;
+      margin-top: 2px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 60%, #fde047 100%);
+      color: #7c3800;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 13px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: .04em;
+      box-shadow: 0 0 0 0 rgba(251,191,36,0);
+      transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245,158,11,.55);
+    }
+
+    /* Contatti / Mappa */
+    .contact-section {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.10);
+      overflow: hidden;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-info {
+      padding: 28px 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .contact-info { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .contact-item .ci-icon {
+      width: 36px;
+      height: 36px;
+      background: #f0f4ff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item .ci-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--blue);
+    }
+
+    .contact-item .ci-text {
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .contact-item .ci-text strong {
+      display: block;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #888;
+      margin-bottom: 1px;
+    }
+
+    .contact-item .ci-text a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-item .ci-text a:hover { text-decoration: underline; }
+
+    .map-wrap {
+      min-height: 280px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      border: 0;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--blue);
+      color: rgba(255,255,255,.82);
+      text-align: center;
+      padding: 20px 24px;
+      font-size: .82rem;
+      margin-top: 12px;
+    }
+
+    footer a { color: rgba(255,255,255,.9); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Orari badge */
+    .orari-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff7e0;
+      border: 1.5px solid var(--gold);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: .82rem;
+      color: #7c3800;
+      font-weight: 600;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
+  <header>
+    <div class="logo-cursive">Agenzia Villa</div>
+    <div class="logo-sub">Studio Francesca Villa</div>
+  </header>
+
   <!-- WhatsApp FAB -->
   <a href="https://wa.me/393276229504" target="_blank" rel="noopener" class="wa-fab" aria-label="Scrivici su WhatsApp">
-    <svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l8-2.1C10.7 31 13.3 31.6 16 31.6 24.6 31.6 31.6 24.6 31.6 16S24.6.4 16 .4zm0 28.6c-2.5 0-5-.7-7.1-1.9l-.5-.3-5.2 1.4 1.4-5-.3-.5C3 21.1 2.1 18.6 2.1 16 2.1 8.4 8.4 2.1 16 2.1S29.9 8.4 29.9 16 23.6 29 16 29zm8-10.3c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.7-.2-1 .2s-1.1 1.3-1.4 1.6c-.3.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.3-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3 0-.6-.1-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.8-1-.8h-.9c-.3 0-.8.1-1.2.6-.4.4-1.6 1.6-1.6 3.9s1.7 4.5 1.9 4.8c.2.3 3.3 5 8 7 1.1.5 2 .8 2.7 1 1.1.3 2.2.3 3 .2.9-.1 2.8-1.2 3.2-2.3.4-1.1.4-2.1.3-2.3-.1-.2-.4-.4-.8-.6z"/></svg>
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l8-2.1C10.7 31 13.3 31.6 16 31.6 24.6 31.6 31.6 24.6 31.6 16S24.6.4 16 .4zm0 28.6c-2.5 0-5-.7-7.1-1.9l-.5-.3-5.2 1.4 1.4-5-.3-.5C3 21.1 2.1 18.6 2.1 16 2.1 8.4 8.4 2.1 16 2.1S29.9 8.4 29.9 16 23.6 29 16 29zm8-10.3c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.7-.2-1 .2s-1.1 1.3-1.4 1.6c-.3.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.3-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3 0-.6-.1-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.8-1-.8h-.9c-.3 0-.8.1-1.2.6-.4.4-1.6 1.6-1.6 3.9s1.7 4.5 1.9 4.8c.2.3 3.3 5 8 7 1.1.5 2 .8 2.7 1 1.1.3 2.2.3 3 .2.9-.1 2.8-1.2 3.2-2.3.4-1.1.4-2.1.3-2.3-.1-.2-.4-.4-.8-.6z"/>
+    </svg>
   </a>
 
-  <!-- ═══════════════ CARTELLONE ═══════════════ -->
-  <div class="cartellone">
+  <!-- Main -->
+  <main>
 
-    <!-- Logo -->
-    <div class="logo-area">
-      <div class="logo-cursive">Agenzia Villa</div>
-      <div class="logo-sub">Studio Francesca Villa</div>
-    </div>
+    <!-- GRIGLIA SERVIZI: Pratiche Auto sinistra | Assicurazioni + Patenti destra -->
+    <div class="cards-grid">
 
-    <!-- Griglia 3 pannelli -->
-    <div class="servizi-grid">
-
-      <!-- SINISTRA: Pratiche Auto -->
-      <div class="panel-auto">
-        <!-- Icona auto stilizzata (timbro/documento) -->
-        <svg class="panel-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="12" width="48" height="40" rx="4" stroke="#c0392b" stroke-width="3" fill="#fff5f5"/>
-          <path d="M18 30 h28" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M18 38 h20" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 14 l4-6 h12 l4 6" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="46" cy="46" r="10" fill="#c0392b"/>
-          <path d="M41 46 h6 M44 43 v6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-
-        <ul>
-          <li>Trasferimenti di Propriet&agrave;</li>
-          <li>Immatricolazioni</li>
-          <li>Revisioni</li>
-          <li>Collaudi</li>
-        </ul>
+      <!-- CARD 1 - Pratiche Auto (colonna sinistra, intera altezza) -->
+      <div class="card card-auto">
+        <div class="card-header">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l3 5v5a2 2 0 0 1-2 2h-1"/>
+              <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+            </svg>
+          </div>
+          <h2>Pratiche Auto</h2>
+        </div>
+        <div class="card-body">
+          <ul class="service-list">
+            <li><span class="dot"></span>Trasferimenti di Propriet&agrave;</li>
+            <li><span class="dot"></span>Immatricolazioni</li>
+            <li><span class="dot"></span>Revisioni</li>
+            <li><span class="dot"></span>Collaudi</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- DESTRA IN ALTO: Assicurazioni -->
-      <div class="panel-insurance">
-        <div class="panel-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Assicurazioni
+      <!-- CARD 2 - Assicurazioni (colonna destra, in alto) -->
+      <div class="card card-insurance">
+        <div class="card-header">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h2>Assicurazioni</h2>
         </div>
-        <ul>
-          <li>Veicoli d&rsquo;Epoca</li>
-          <li>Preventivi RC Auto</li>
-          <li>Infortunistica Stradale</li>
-        </ul>
+        <div class="card-body">
+          <ul class="service-list">
+            <li><span class="dot"></span>Veicoli d&rsquo;Epoca</li>
+            <li><span class="dot"></span>Preventivi RC Auto</li>
+            <li><span class="dot"></span>Infortunistica Stradale</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- DESTRA IN BASSO: Patenti -->
-      <div class="panel-nautical">
-        <div class="panel-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a4480" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
-          Patenti Nautiche
+      <!-- CARD 3 - Patenti & Certificazioni (colonna destra, in basso) -->
+      <div class="card card-nautical">
+        <div class="card-header">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="3"/>
+              <line x1="12" y1="22" x2="12" y2="8"/>
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </svg>
+          </div>
+          <h2>Patenti &amp; Certificazioni</h2>
         </div>
-        <ul>
-          <li>Convalide Patenti</li>
-          <li>Varie Certificazioni</li>
-        </ul>
+        <div class="card-body">
+          <ul class="service-list">
+            <li><span class="dot"></span>Patenti Nautiche</li>
+            <li><span class="dot"></span>Convalide Patenti</li>
+            <li><span class="dot"></span>Varie Certificazioni</li>
+          </ul>
+        </div>
       </div>
 
     </div>
@@ -360,30 +487,78 @@
     <div class="cta-bar">
       <p>
         Vuoi un preventivo immediato?
-        <span>Risposta rapida su WhatsApp.</span>
+        <span>Contattaci ora, risposta rapida su WhatsApp.</span>
       </p>
-      <a href="https://wa.me/393276229504?text=Buongiorno%2C%20vorrei%20un%20preventivo." class="btn-wa" target="_blank" rel="noopener">
-        <svg viewBox="0 0 32 32"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l8-2.1C10.7 31 13.3 31.6 16 31.6 24.6 31.6 31.6 24.6 31.6 16S24.6.4 16 .4zm8 23.3c-.4.9-2.3 2.2-3.2 2.3-.8.1-1.9.1-3-.2-.7-.2-1.6-.5-2.7-1-4.7-2-7.8-6.7-8-7-.2-.3-1.9-2.5-1.9-4.8s1.2-3.5 1.6-3.9c.4-.5.9-.6 1.2-.6h.9c.3 0 .6-.1 1 .8.4.9 1.3 3.1 1.4 3.3.1.2.2.5.1.8-.1.3-.2.5-.4.7l-.6.7c-.2.2-.5.4-.2.8.2.4 1 1.7 2.2 2.8 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.2.9-.1.3-.3.9-1.2 1.4-1.6.3-.4.6-.3 1-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.4.8.6.1.2.1 1.2-.3 2.3z"/></svg>
+      <a href="https://wa.me/393276229504?text=Buongiorno%2C%20vorrei%20un%20preventivo." class="btn-cta" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l8-2.1C10.7 31 13.3 31.6 16 31.6 24.6 31.6 31.6 24.6 31.6 16S24.6.4 16 .4zm8 23.3c-.4.9-2.3 2.2-3.2 2.3-.8.1-1.9.1-3-.2-.7-.2-1.6-.5-2.7-1-4.7-2-7.8-6.7-8-7-.2-.3-1.9-2.5-1.9-4.8s1.2-3.5 1.6-3.9c.4-.5.9-.6 1.2-.6h.9c.3 0 .6-.1 1 .8.4.9 1.3 3.1 1.4 3.3.1.2.2.5.1.8-.1.3-.2.5-.4.7l-.6.7c-.2.2-.5.4-.2.8.2.4 1 1.7 2.2 2.8 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.2.9-.1.3-.3.9-1.2 1.4-1.6.3-.4.6-.3 1-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.4.8.6.1.2.1 1.2-.3 2.3z"/></svg>
         Richiedi Preventivo
       </a>
     </div>
 
-    <!-- Footer contatti -->
-    <div class="footer-contacts">
-      <div class="fc-left">
-        <span><strong>Via XXV Luglio, 86 &ndash; 84013 Cava de&rsquo; Tirreni (SA)</strong></span>
-        <span><a href="mailto:studiofrancescavilla@gmail.com">studiofrancescavilla@gmail.com</a></span>
-        <span style="opacity:.65;font-size:.72rem;">Lun&ndash;Ven: 9:00&ndash;13:00 / 15:00&ndash;18:30</span>
-      </div>
-      <div class="fc-right">
-        <span><a href="tel:+393711151204">371 115 1204</a></span>
-        <span><a href="tel:+393276229504">327 622 9504</a> <span style="opacity:.6;font-size:.7rem;">WhatsApp</span></span>
-        <span><a href="tel:+39089461820">089 461820</a></span>
-        <span><a href="tel:+393925687934">392 5687934</a></span>
-      </div>
-    </div>
+    <!-- Contatti + Mappa -->
+    <section class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Dove Siamo</h3>
 
-  </div><!-- /.cartellone -->
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>Indirizzo</strong>
+              Via XXV Luglio, 86<br>84013 Cava de&rsquo; Tirreni (SA)
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>Telefono</strong>
+              <a href="tel:+393711151204">371 115 1204</a><br>
+              <a href="tel:+393276229504">327 622 9504</a><br>
+              <a href="tel:+39089461820">089 461820</a><br>
+              <a href="tel:+393925687934">392 5687934</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="ci-text">
+              <strong>Email</strong>
+              <a href="mailto:studiofrancescavilla@gmail.com">studiofrancescavilla@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="orari-badge">
+            &#128336;&nbsp;Lun&ndash;Ven: 9:00&ndash;13:00 / 15:00&ndash;18:30
+          </div>
+        </div>
+
+        <!-- Google Maps iframe -->
+        <div class="map-wrap">
+          <iframe
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.0!2d14.7050!3d40.7016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b98c4a2e9f8a1%3A0x9b3d7f91a4c20e0f!2sVia%20XXV%20Luglio%2C%2086%2C%2084013%20Cava%20de&#39;%20Tirreni%20SA%2C%20Italy!5e0!3m2!1sit!2sit!4v1695000000000!5m2!1sit!2sit"
+            title="Mappa Agenzia Villa &ndash; Via XXV Luglio 86, Cava de&rsquo; Tirreni">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 <strong>Agenzia Villa</strong> &ndash; Studio Francesca Villa &nbsp;|&nbsp; Via XXV Luglio, 86 &ndash; 84013 Cava de&rsquo; Tirreni (SA)</p>
+    <p style="margin-top:6px;opacity:.7;font-size:.76rem;">P.IVA / C.F.: consultare in sede &nbsp;&middot;&nbsp; Tutti i diritti riservati</p>
+  </footer>
 
 </body>
 </html>

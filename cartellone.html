@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agenzia Villa ÔÇô Cava de' Tirreni</title>
-  <meta name="description" content="Agenzia Villa ÔÇô Studio Francesca Villa. Pratiche auto, assicurazioni, patenti nautiche. Via XXV Luglio 86, Cava de' Tirreni." />
+  <title>Agenzia Villa &ndash; Cava de&rsquo; Tirreni</title>
+  <meta name="description" content="Agenzia Villa &ndash; Studio Francesca Villa. Pratiche auto, assicurazioni, patenti nautiche. Via XXV Luglio 86, Cava de&rsquo; Tirreni." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ÔöÇÔöÇÔöÇ Reset & base ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Reset & base */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -38,7 +38,7 @@
       flex-direction: column;
     }
 
-    /* ÔöÇÔöÇÔöÇ Header / Logo ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Header / Logo */
     header {
       background: #fff;
       border-bottom: 3px solid var(--red);
@@ -88,7 +88,7 @@
     .wa-fab:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,.65); }
     .wa-fab svg { width: 30px; height: 30px; fill: #fff; }
 
-    /* ÔöÇÔöÇÔöÇ Main layout ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Main layout */
     main {
       flex: 1;
       max-width: 900px;
@@ -100,7 +100,7 @@
       gap: 24px;
     }
 
-    /* ÔöÇÔöÇÔöÇ Service Card ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Service Card */
     .card {
       background: #fff;
       border-radius: 14px;
@@ -170,8 +170,9 @@
       flex-shrink: 0;
     }
 
-    /* ÔöÇÔöÇÔöÇ Card colour variants ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
-    /* Auto / Pratiche (RED) */
+    /* Card colour variants */
+
+    /* Pratiche Auto (RED) */
     .card-auto .card-header { background: var(--red); }
     .card-auto .card-header h2 { color: #fff; }
     .card-auto .card-header .icon { background: rgba(255,255,255,.2); }
@@ -185,14 +186,14 @@
     .card-insurance .service-list li { color: var(--blue); }
     .card-insurance .service-list li .dot { background: var(--blue); }
 
-    /* Patenti / Nautiche (TEAL) */
+    /* Patenti & Certificazioni (TEAL) */
     .card-nautical .card-header { background: var(--teal); }
     .card-nautical .card-header h2 { color: #fff; }
     .card-nautical .card-header .icon { background: rgba(255,255,255,.2); }
     .card-nautical .service-list li { color: var(--teal); }
     .card-nautical .service-list li .dot { background: var(--teal); }
 
-    /* ÔöÇÔöÇÔöÇ CTA bar ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* CTA bar */
     .cta-bar {
       background: linear-gradient(135deg, var(--blue) 0%, var(--blue-lt) 100%);
       border-radius: 14px;
@@ -242,7 +243,7 @@
       box-shadow: 0 8px 28px rgba(245,158,11,.55);
     }
 
-    /* ÔöÇÔöÇÔöÇ Contatti / Map ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Contatti / Mappa */
     .contact-section {
       background: #fff;
       border-radius: 14px;
@@ -335,7 +336,7 @@
       display: block;
     }
 
-    /* ÔöÇÔöÇÔöÇ Footer ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Footer */
     footer {
       background: var(--blue);
       color: rgba(255,255,255,.82);
@@ -348,7 +349,7 @@
     footer a { color: rgba(255,255,255,.9); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* ÔöÇÔöÇÔöÇ Orari badge ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+    /* Orari badge */
     .orari-badge {
       display: inline-flex;
       align-items: center;
@@ -366,27 +367,26 @@
 </head>
 <body>
 
-  <!-- ÔöÇÔöÇÔöÇ Header ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ -->
+  <!-- Header -->
   <header>
     <div class="logo-cursive">Agenzia Villa</div>
     <div class="logo-sub">Studio Francesca Villa</div>
   </header>
 
-  <!-- ÔöÇÔöÇÔöÇ WhatsApp FAB ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ -->
+  <!-- WhatsApp FAB -->
   <a href="https://wa.me/393276229504" target="_blank" rel="noopener" class="wa-fab" aria-label="Scrivici su WhatsApp">
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
       <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l8-2.1C10.7 31 13.3 31.6 16 31.6 24.6 31.6 31.6 24.6 31.6 16S24.6.4 16 .4zm0 28.6c-2.5 0-5-.7-7.1-1.9l-.5-.3-5.2 1.4 1.4-5-.3-.5C3 21.1 2.1 18.6 2.1 16 2.1 8.4 8.4 2.1 16 2.1S29.9 8.4 29.9 16 23.6 29 16 29zm8-10.3c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.7-.2-1 .2s-1.1 1.3-1.4 1.6c-.3.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.3-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3 0-.6-.1-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.8-1-.8h-.9c-.3 0-.8.1-1.2.6-.4.4-1.6 1.6-1.6 3.9s1.7 4.5 1.9 4.8c.2.3 3.3 5 8 7 1.1.5 2 .8 2.7 1 1.1.3 2.2.3 3 .2.9-.1 2.8-1.2 3.2-2.3.4-1.1.4-2.1.3-2.3-.1-.2-.4-.4-.8-.6z"/>
     </svg>
   </a>
 
-  <!-- ÔöÇÔöÇÔöÇ Main ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ -->
+  <!-- Main -->
   <main>
 
-    <!-- CARD 1 ÔÇö Pratiche Auto -->
+    <!-- CARD 1 - Pratiche Auto -->
     <div class="card card-auto">
       <div class="card-header">
         <div class="icon">
-          <!-- Car icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l3 5v5a2 2 0 0 1-2 2h-1"/>
             <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
@@ -396,7 +396,7 @@
       </div>
       <div class="card-body">
         <ul class="service-list">
-          <li><span class="dot"></span>Trasferimenti di Propriet├á</li>
+          <li><span class="dot"></span>Trasferimenti di Propriet&agrave;</li>
           <li><span class="dot"></span>Immatricolazioni</li>
           <li><span class="dot"></span>Revisioni</li>
           <li><span class="dot"></span>Collaudi</li>
@@ -404,11 +404,10 @@
       </div>
     </div>
 
-    <!-- CARD 2 ÔÇö Assicurazioni -->
+    <!-- CARD 2 - Assicurazioni -->
     <div class="card card-insurance">
       <div class="card-header">
         <div class="icon">
-          <!-- Shield icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -417,18 +416,17 @@
       </div>
       <div class="card-body">
         <ul class="service-list">
-          <li><span class="dot"></span>Veicoli d'Epoca</li>
+          <li><span class="dot"></span>Veicoli d&rsquo;Epoca</li>
           <li><span class="dot"></span>Preventivi RC Auto</li>
           <li><span class="dot"></span>Infortunistica Stradale</li>
         </ul>
       </div>
     </div>
 
-    <!-- CARD 3 ÔÇö Patenti & Certificazioni -->
+    <!-- CARD 3 - Patenti & Certificazioni -->
     <div class="card card-nautical">
       <div class="card-header">
         <div class="icon">
-          <!-- Anchor icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="5" r="3"/>
             <line x1="12" y1="22" x2="12" y2="8"/>
@@ -453,7 +451,6 @@
         <span>Contattaci ora, risposta rapida su WhatsApp.</span>
       </p>
       <a href="https://wa.me/393276229504?text=Buongiorno%2C%20vorrei%20un%20preventivo." class="btn-cta" target="_blank" rel="noopener">
-        <!-- WhatsApp icon -->
         <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l8-2.1C10.7 31 13.3 31.6 16 31.6 24.6 31.6 31.6 24.6 31.6 16S24.6.4 16 .4zm8 23.3c-.4.9-2.3 2.2-3.2 2.3-.8.1-1.9.1-3-.2-.7-.2-1.6-.5-2.7-1-4.7-2-7.8-6.7-8-7-.2-.3-1.9-2.5-1.9-4.8s1.2-3.5 1.6-3.9c.4-.5.9-.6 1.2-.6h.9c.3 0 .6-.1 1 .8.4.9 1.3 3.1 1.4 3.3.1.2.2.5.1.8-.1.3-.2.5-.4.7l-.6.7c-.2.2-.5.4-.2.8.2.4 1 1.7 2.2 2.8 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.2.9-.1.3-.3.9-1.2 1.4-1.6.3-.4.6-.3 1-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.4.8.6.1.2.1 1.2-.3 2.3z"/></svg>
         Richiedi Preventivo
       </a>
@@ -471,7 +468,7 @@
             </div>
             <div class="ci-text">
               <strong>Indirizzo</strong>
-              Via XXV Luglio, 86<br>84013 Cava de' Tirreni (SA)
+              Via XXV Luglio, 86<br>84013 Cava de&rsquo; Tirreni (SA)
             </div>
           </div>
 
@@ -499,7 +496,7 @@
           </div>
 
           <div class="orari-badge">
-            ­ƒòÉ&nbsp;LunÔÇôVen: 9:00ÔÇô13:00 / 15:00ÔÇô18:30
+            &#128336;&nbsp;Lun&ndash;Ven: 9:00&ndash;13:00 / 15:00&ndash;18:30
           </div>
         </div>
 
@@ -510,7 +507,7 @@
             allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.0!2d14.7050!3d40.7016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b98c4a2e9f8a1%3A0x9b3d7f91a4c20e0f!2sVia%20XXV%20Luglio%2C%2086%2C%2084013%20Cava%20de&#39;%20Tirreni%20SA%2C%20Italy!5e0!3m2!1sit!2sit!4v1695000000000!5m2!1sit!2sit"
-            title="Mappa Agenzia Villa ÔÇô Via XXV Luglio 86, Cava de' Tirreni">
+            title="Mappa Agenzia Villa &ndash; Via XXV Luglio 86, Cava de&rsquo; Tirreni">
           </iframe>
         </div>
       </div>
@@ -518,10 +515,10 @@
 
   </main>
 
-  <!-- ÔöÇÔöÇÔöÇ Footer ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ -->
+  <!-- Footer -->
   <footer>
-    <p>┬® 2025 <strong>Agenzia Villa</strong> ÔÇô Studio Francesca Villa &nbsp;|&nbsp; Via XXV Luglio, 86 ÔÇô 84013 Cava de' Tirreni (SA)</p>
-    <p style="margin-top:6px;opacity:.7;font-size:.76rem;">P.IVA / C.F.: consultare in sede &nbsp;┬À&nbsp; Tutti i diritti riservati</p>
+    <p>&copy; 2025 <strong>Agenzia Villa</strong> &ndash; Studio Francesca Villa &nbsp;|&nbsp; Via XXV Luglio, 86 &ndash; 84013 Cava de&rsquo; Tirreni (SA)</p>
+    <p style="margin-top:6px;opacity:.7;font-size:.76rem;">P.IVA / C.F.: consultare in sede &nbsp;&middot;&nbsp; Tutti i diritti riservati</p>
   </footer>
 
 </body>
